@@ -18,12 +18,16 @@ sylius_grid:
                     type: string
                     label: app.ui.tier
                     sortable: ~
+                logo:
+                    type: twig
+                    options:
+                        template: '@SyliusAdmin\Grid\Field\Sponsor\_logo.html.twig'
             actions:
                 main:
                     create:
                         type: create
                         label: app.ui.create
-                items:
+                item:
                     delete:
                         type: delete
                         label: app.ui.delete
@@ -31,3 +35,8 @@ sylius_grid:
                         type: update
                         label: app.ui.update
                         
+liip_imagine:
+    filter_sets:
+        app_admin_sponsor_logo_small:
+            filters:
+                thumbnail: { size: [50, 50]}

@@ -43,3 +43,9 @@ services:
         autoconfigure: true
         arguments:
             - '%app.model.sponsor_logo.class%'
+            
+            
+    Sylius\Bundle\CoreBundle\EventListener\ImageUploadListener:
+        tags:
+            - { name: kernel.event_listener, event: 'app.sponsor.pre_create', method: uploadImage }
+            - { name: kernel.event_listener, event: 'app.sponsor.pre_update', method: uploadImage }

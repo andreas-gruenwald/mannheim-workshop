@@ -39,7 +39,7 @@ class Sponsor implements CodeAwareInterface, ResourceInterface, ImageAwareInterf
     #[ORM\Column(type: 'string', length: 255)]
     private string $tier = self::TIER_REGULAR;
 
-    #[ORM\OneToOne(mappedBy: 'owner', targetEntity: SponsorLogo::class)]
+    #[ORM\OneToOne(mappedBy: 'owner', targetEntity: SponsorLogo::class, cascade: ['persist'])]
     private ?ImageInterface $logo;
 
     public function getId(): ?int
@@ -95,6 +95,9 @@ class Sponsor implements CodeAwareInterface, ResourceInterface, ImageAwareInterf
     public function setLogo(?ImageInterface $logo): void
     {
         $this->logo = $logo;
+        if (null != $logo) {
+            $logo->setOwner($this);
+        }
     }
 
     public function getImage(): ?ImageInterface
