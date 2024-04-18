@@ -3,3 +3,4 @@ sylius_resource:
         app.sponsor:
             classes:
                 model: App\Entity\Sponsor\Sponsor
+            templates: '@SyliusAdmin/Crud'

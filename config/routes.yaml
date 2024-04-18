@@ -1,27 +1,2 @@
 sylius_paypal_webhook:
     resource: "@SyliusPayPalPlugin/Resources/config/webhook_routing.yaml"
-    
-app_admin_sponsor_create:
-    path: /sponsor/create
-    methods: [GET, POST]
-    defaults:
-        _controller: app.controller.sponsor::createAction
-        _sylius:
-            permission: true
-            section: admin  
-app_admin_sponsor_update:
-    path: /sponsor/{id}/update
-    methods: [GET, PUT]
-    defaults:
-        _controller: app.controller.sponsor::updateAction
-        _sylius:
-            permission: true
-            section: admin  
-app_admin_sponsor_delete:
-    path: /sponsor/{id}/delete
-    methods: [DELETE]
-    defaults:
-        _controller: app.controller.sponsor::deleteAction
-        _sylius:
-            permission: true
-            section: admin  
