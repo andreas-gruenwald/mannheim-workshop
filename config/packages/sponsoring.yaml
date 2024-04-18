@@ -1,0 +1,5 @@
+sylius_resource:
+    resources:
+        app.sponsor:
+            classes:
+                model: App\Entity\Sponsor\Sponsor
