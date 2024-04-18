@@ -21,7 +21,7 @@ services:
     # this creates a service per class whose id is the fully-qualified class name
     App\:
         resource: '../src/*'
-        exclude: '../src/{Entity,Migrations,Tests,Kernel.php}'
+        exclude: '../src/{Entity,Migrations,Tests,Kernel.php,Form/Resource}'
 
     # Controllers are imported separately to make sure services can be injected
     # as action arguments even if you don't extend any base controller class
@@ -32,3 +32,14 @@ services:
     App\Menu\Listener\AdminMenuListener:
         tags:
             - {name: kernel.event_listener, event: sylius.menu.admin.main, method: addAdminMenuItems }
+    
+    App\Form\Resource\Sponsor\SponsorType:
+        autowire: false
+        autoconfigure: true
+        arguments:
+            - '%app.model.sponsor.class%'
+    App\Form\Resource\Sponsor\SponsorLogoType:
+        autowire: false
+        autoconfigure: true
+        arguments:
+            - '%app.model.sponsor_logo.class%'

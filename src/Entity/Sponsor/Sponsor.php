@@ -2,19 +2,17 @@
 
 namespace App\Entity\Sponsor;
 
+use Sylius\Component\Core\Model\ImageAwareInterface;
+use Sylius\Component\Core\Model\ImageInterface;
 use Sylius\Component\Resource\Model\CodeAwareInterface;
 use Sylius\Component\Resource\Model\ResourceInterface;
 
 
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * @ORM\Entity
- * @ORM\Table(name="sylius_sponsor")
- */
 #[ORM\Entity]
 #[ORM\Table(name: 'sylius_sponsor')]
-class Sponsor implements CodeAwareInterface, ResourceInterface
+class Sponsor implements CodeAwareInterface, ResourceInterface, ImageAwareInterface
 {
     public const TIER_HOST = 'host';
     public const TIER_REGULAR = 'regular';
@@ -40,6 +38,9 @@ class Sponsor implements CodeAwareInterface, ResourceInterface
 
     #[ORM\Column(type: 'string', length: 255)]
     private string $tier = self::TIER_REGULAR;
+
+    #[ORM\OneToOne(mappedBy: 'owner', targetEntity: SponsorLogo::class)]
+    private ?ImageInterface $logo;
 
     public function getId(): ?int
     {
@@ -85,5 +86,26 @@ class Sponsor implements CodeAwareInterface, ResourceInterface
     {
         $this->tier = $tier;
     }
+
+    public function getLogo(): ?ImageInterface
+    {
+        return $this->logo;
+    }
+
+    public function setLogo(?ImageInterface $logo): void
+    {
+        $this->logo = $logo;
+    }
+
+    public function getImage(): ?ImageInterface
+    {
+        return $this->logo;
+    }
+
+    public function setImage(?ImageInterface $image): void
+    {
+        $this->logo = $image;
+    }
+
 
 }

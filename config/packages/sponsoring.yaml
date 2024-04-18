@@ -3,4 +3,9 @@ sylius_resource:
         app.sponsor:
             classes:
                 model: App\Entity\Sponsor\Sponsor
+                form: App\Form\Resource\Sponsor\SponsorType
             templates: '@SyliusAdmin/Crud'
+        app.sponsor_logo:
+            classes:
+                model: App\Entity\Sponsor\SponsorLogo
+                form: App\Form\Resource\Sponsor\SponsorLogoType
